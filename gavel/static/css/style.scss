@@ -354,3 +354,18 @@ input[type=submit].neutral {
     text-align: center;
   }
 }
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+#email {
+  width: 20rem;
+}
+
+#submit-email {
+  width: 10rem;
+}

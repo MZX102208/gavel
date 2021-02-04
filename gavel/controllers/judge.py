@@ -121,8 +121,8 @@ def logout():
     session.pop(ANNOTATOR_ID, None)
     return redirect(url_for('index'))
 
-@app.route('/login/<secret>/')
-def login(secret):
+@app.route('/login2/<secret>/')
+def login2(secret):
     annotator = Annotator.by_secret(secret)
     if annotator is None:
         session.pop(ANNOTATOR_ID, None)
@@ -130,6 +130,22 @@ def login(secret):
     else:
         session[ANNOTATOR_ID] = annotator.id
     return redirect(url_for('index'))
+
+@app.route('/login')
+def login():
+    email = request.args.get('email')
+    if email != None:
+        # Didn't figure out why can't filter by email column so hacking it through name
+        annotator = Annotator.by_name(email)
+        if annotator is None:
+            session.pop(ANNOTATOR_ID, None)
+            session.modified = True
+        else:
+            session[ANNOTATOR_ID] = annotator.id
+        return redirect(url_for('index'))
+    return render_template(
+        'login.html'
+    )
 
 @app.route('/welcome/')
 @requires_open(redirect_to='index')

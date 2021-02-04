@@ -11,4 +11,9 @@ def _jinja2_filter_datetime_local(datetime):
 def _jinja2_filter_datetime_epoch(datetime):
     if datetime is None:
         return 0
-    return datetime.strftime('%s')
+    datetime_res = 0
+    try:
+        datetime_res = datetime.strftime('%s')
+    except Exception as e:
+        pass
+    return datetime_res

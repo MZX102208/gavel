@@ -52,6 +52,14 @@ class Annotator(db.Model):
         return annotator
 
     @classmethod
+    def by_name(cls, name):
+        try:
+            annotator = cls.query.filter(cls.name == name).one()
+        except NoResultFound:
+            annotator = None
+        return annotator
+
+    @classmethod
     def by_id(cls, uid):
         if uid is None:
             return None
