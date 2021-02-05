@@ -2,6 +2,19 @@
 {% block title %}Vote{% endblock %}
 {% block content %}
 <div class="item">
+  <script>
+    var start = 30;
+    setInterval(function() {
+      start--;
+      let element = document.getElementById("timer");
+      if (start < 0) {
+        element.innerHTML = "Time's up!";
+        clearInterval();
+      } else {
+        element.innerHTML = `${start} seconds`;
+      }
+    }, 1000);
+  </script>
   <div class="banner-tight" id="previous-header">
     <h1>Previous</h1>
   </div>
@@ -22,6 +35,8 @@
     {% endwith %}
   </div>
 </div>
+
+<h1 id="timer">30 seconds</h1>
 
 <div class="item">
   <div class="banner" id="vote-header">
