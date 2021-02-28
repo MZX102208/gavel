@@ -3,7 +3,7 @@
 {% block content %}
 <div class="item">
   <script>
-    var start = 30;
+    var start = 300;
     setInterval(function() {
       start--;
       let element = document.getElementById("timer");
@@ -11,7 +11,10 @@
         element.innerHTML = "Time's up!";
         clearInterval();
       } else {
-        element.innerHTML = `${start} seconds`;
+        let minutes = start / 60;
+        let seconds = start % 60;
+        let secondsString = seconds >= 10 ? `${seconds}` : `0${seconds}`;
+        element.innerHTML = `${minutes}:${secondsString}`;
       }
     }, 1000);
   </script>
